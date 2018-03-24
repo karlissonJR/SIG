@@ -11,6 +11,7 @@ create table gerente_de_estoque(
 create table estoque(
 	codigo varchar(4),
     capacidade int not null,
+    cpf_gerente varchar(11),
     primary key(codigo)
 );
 
@@ -22,26 +23,14 @@ create table produto(
     primary key(codigo)
 );
 
-create table gerencia(
-	cpf_gerente varchar(11),
-    codigo_estoque varchar(4),
-    primary key(cpf_gerente, codigo_estoque)
-);
+alter table estoque
+add foreign key(cpf_gerente)
+	references gerente_de_estoque(cpf)
+    on delete cascade
+    on update cascade;
 
 alter table produto
 add foreign key(codigo_estoque)
 	references estoque(codigo)
     on delete set null
-    on update cascade;
-    
-alter table gerencia
-add foreign key(cpf_gerente)
-	references gerente_de_estoque(cpf)
-    on delete cascade
-    on update cascade;
-    
-alter table gerencia
-add foreign key(codigo_estoque)
-	references estoque(codigo)
-    on delete cascade
     on update cascade;
