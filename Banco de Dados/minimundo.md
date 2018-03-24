@@ -5,6 +5,5 @@
 O <i>SIG</i> armazena os dados do gerente de estoque que são nome, CPF(único), salário.<br>
 O gerente de estoque fica responsável por gerenciar os estoques do estabelecimento.
 Os estoques contém um código(único) e uma capacidade de produtos a serem armazenados.<br>
-O <i>SIG</i> também armazena produtos que tem um código(único), nome, preço.<br>
-Sempre que o gerente mexer no estoque será guardada a data e hora do serviço.
+O <i>SIG</i> também armazena produtos que tem um código(único), nome, preço.
 </p>
