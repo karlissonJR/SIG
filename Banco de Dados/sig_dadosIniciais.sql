@@ -18,5 +18,5 @@ insert into gerencia (cpf_funcionario, codigo_estoque) values
 insert into produto values
 	("P001", "Pen Drive 8 GB", 25, "001"),
     ("P002", "Raquete", 30.25, "003"),
-    ("P003", "Ovo", 1, "002"),
+    ("P003", "Chinelo", 7, "002"),
     ("P004", "Tênis", 50, "003");
