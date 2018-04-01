@@ -1,15 +1,22 @@
-insert into gerente_de_estoque values
-	("11111111100", "Gabriel", 5000),
-    ("22222222200", "Zé", 1500.49),
-    ("33333333300", "Maria", 2000),
-    ("44556677889", "Willames Almeida", 12578.64);
+use sig;
+
+insert into funcionario values
+	("11111111111", "Karlisson", "01110111", 5000.50),
+    ("22222222222", "Gabriel", "02220222", 12000),
+    ("33333333333", "Willames", "03330333", 25000);
     
 insert into estoque values
-	("001E", 50),
-    ("010E", 30);
+	("001", 25),
+    ("002", 50),
+    ("003", 100);
     
+insert into gerencia (cpf_funcionario, codigo_estoque) values
+	("11111111111", "001"),
+    ("11111111111", "001"),
+    ("33333333333", "003");
+
 insert into produto values
-	("0001PE", "Pen Drive 8GB", 50, "001E"),
-    ("0002PE", "Pipoca", 0.10, "010E"),
-    ("0003PE", "Miojo", 1.5, "010E"),
-    ("0004PE", "Cocada", 0.1, "010E");
+	("P001", "Pen Drive 8 GB", 25, "001"),
+    ("P002", "Raquete", 30.25, "003"),
+    ("P003", "Ovo", 1, "002"),
+    ("P004", "Tênis", 50, "003");

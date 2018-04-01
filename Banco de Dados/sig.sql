@@ -1,36 +1,49 @@
 create database sig default charset 'utf8';
 use sig;
 
-create table gerente_de_estoque(
+create table funcionario(
 	cpf varchar(11),
     nome varchar(50) not null,
+    telefone varchar(11) not null,
     salario decimal(8,2) unsigned not null,
     primary key(cpf)
 );
 
 create table estoque(
-	codigo varchar(4),
-    capacidade int not null,
-    cpf_gerente varchar(11),
+	codigo varchar(3),
+    capacidade int unsigned not null,
     primary key(codigo)
+);
+
+create table gerencia(
+	numero_gerencia int auto_increment,
+	cpf_funcionario varchar(11),
+    codigo_estoque varchar(3),
+    primary key(numero_gerencia, cpf_funcionario, codigo_estoque)
 );
 
 create table produto(
-	codigo varchar(6),
-    nome varchar(30) not null,
-    preco decimal(6,2) unsigned not null,
-    codigo_estoque varchar(4),
+	codigo varchar(4),
+    nome varchar(50) not null,
+    preco decimal(8,2) unsigned not null,
+    codigo_estoque varchar(3) not null,
     primary key(codigo)
 );
 
-alter table estoque
-add foreign key(cpf_gerente)
-	references gerente_de_estoque(cpf)
+alter table gerencia
+add foreign key(cpf_funcionario)
+	references funcionario(cpf)
+    on delete cascade
+    on update cascade;
+    
+alter table gerencia
+add foreign key(codigo_estoque)
+	references estoque(codigo)
     on delete cascade
     on update cascade;
 
 alter table produto
 add foreign key(codigo_estoque)
 	references estoque(codigo)
-    on delete set null
+    on delete cascade
     on update cascade;
