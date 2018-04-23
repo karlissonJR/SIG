@@ -4,4 +4,9 @@
 pode ser executada isoladamente.<br>
 A necessidade de implementação do software surgiu com a finalidade de auxiliar o processo de administração do estabelecimento, fornecendo um controle detalhado dos estoques.<p>
   
-<h2>Equipe</h2>
+<h2>Equipe: </h2>
+<ul>
+  <li>José Karlisson Padilha de Farias Júnior</li>
+  <li>Gabriel Silva Vieira</li>
+  <li>José Willames de Almeida Barbosa</li>
+</ul>
