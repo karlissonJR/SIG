@@ -8,7 +8,6 @@ public class Estoque {
 	private int capacidade;
 	
 	public Estoque(String codigo, String nome, String tipo, int capacidade) {
-		super();
 		this.codigo = codigo;
 		this.nome = nome;
 		this.tipo = tipo;
