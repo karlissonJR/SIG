@@ -6,8 +6,9 @@ import java.sql.SQLException;
 
 public class Conexao {
 
-	private static Conexao instancia = null;
+	private static Conexao instancia;
 	private static Connection conexao;
+	
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/sig";
 	private static final String USUARIO = "root";
@@ -25,11 +26,12 @@ public class Conexao {
 		
 	}
 	
-	public static Conexao getConexao() {
+	public static Connection iniciar() {
+		
 		if(instancia == null)
 			instancia = new Conexao();
 		
-		return instancia;
+		return conexao;
 	}
 	
 	public static void encerrar() {
