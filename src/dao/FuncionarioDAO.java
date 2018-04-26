@@ -12,7 +12,7 @@ public class FuncionarioDAO {
 	public void salvar(Funcionario funcionario) {
 		
 		String sql = "INSERT INTO funcionario (cpf,nome,telefone,senha) VALUES (?,?,?,?)";	
-		PreparedStatement stmt = null;
+		PreparedStatement stmt;
 		
 		try {
 			stmt = Conexao.iniciar().prepareStatement(sql);
