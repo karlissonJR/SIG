@@ -37,4 +37,9 @@ public class Funcionario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("CPF: %s\nNome: %s\nTelefone: %s\n", getCpf(), getNome(), getTelefone());
+	}
 }
