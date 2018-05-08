@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,13 +10,17 @@ import model.Estoque;
 
 public class EstoqueDAO {
 
+	private Connection conexao;
+	
 	public void salvar(Estoque estoque) {
 		
 		String sql = "INSERT INTO estoque (codigo,nome,tipo,capacidade) VALUES (?,?,?,?)";	
 		PreparedStatement stmt;
 		
+		Conexao.iniciar(conexao);
+		
 		try {
-			stmt = Conexao.iniciar().prepareStatement(sql);
+			stmt = conexao.prepareStatement(sql);
 			
 			stmt.setString(1, estoque.getCodigo());
 			stmt.setString(2, estoque.getNome());
@@ -28,7 +33,7 @@ public class EstoqueDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar();
+			Conexao.encerrar(conexao);
 		}
 		
 	}
@@ -41,8 +46,10 @@ public class EstoqueDAO {
 		
 		ArrayList<Estoque> estoques = new ArrayList<>();
 		
+		Conexao.iniciar(conexao);
+		
 		try {
-			stmt = Conexao.iniciar().prepareStatement(sql);
+			stmt = conexao.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -61,7 +68,7 @@ public class EstoqueDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar();
+			Conexao.encerrar(conexao);
 		}
 		
 		return estoques;

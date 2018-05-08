@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,14 +9,18 @@ import java.util.ArrayList;
 import model.Funcionario;
 
 public class FuncionarioDAO {
+	
+	private Connection conexao;
 
 	public void salvar(Funcionario funcionario) {
 		
 		String sql = "INSERT INTO funcionario (cpf,nome,telefone,senha) VALUES (?,?,?,?)";	
 		PreparedStatement stmt;
 		
+		Conexao.iniciar(conexao);
+		
 		try {
-			stmt = Conexao.iniciar().prepareStatement(sql);
+			stmt = conexao.prepareStatement(sql);
 			
 			stmt.setString(1, funcionario.getCpf());
 			stmt.setString(2, funcionario.getNome());
@@ -28,7 +33,7 @@ public class FuncionarioDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar();
+			Conexao.encerrar(conexao);
 		}
 		
 	}
@@ -41,8 +46,10 @@ public class FuncionarioDAO {
 		
 		ArrayList<Funcionario> funcionarios = new ArrayList<>();
 		
+		Conexao.iniciar(conexao);
+		
 		try {
-			stmt = Conexao.iniciar().prepareStatement(sql);
+			stmt = conexao.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -61,7 +68,7 @@ public class FuncionarioDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar();
+			Conexao.encerrar(conexao);
 		}
 		
 		return funcionarios;

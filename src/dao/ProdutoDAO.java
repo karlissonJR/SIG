@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +9,8 @@ import java.util.ArrayList;
 import model.Produto;
 
 public class ProdutoDAO {
+	
+	private Connection conexao;
 
 	public void salvar(Produto produto) {
 		
@@ -15,8 +18,10 @@ public class ProdutoDAO {
 				+ "VALUES (?,?,?,?,?,?,?)";	
 		PreparedStatement stmt;
 		
+		Conexao.iniciar(conexao);
+		
 		try {
-			stmt = Conexao.iniciar().prepareStatement(sql);
+			stmt = conexao.prepareStatement(sql);
 			
 			stmt.setString(1, produto.getCodigo());
 			stmt.setString(2, produto.getNome());
@@ -32,7 +37,7 @@ public class ProdutoDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar();
+			Conexao.encerrar(conexao);
 		}
 		
 	}
@@ -45,8 +50,10 @@ public class ProdutoDAO {
 		
 		ArrayList<Produto> produtos = new ArrayList<>();
 		
+		Conexao.iniciar(conexao);
+		
 		try {
-			stmt = Conexao.iniciar().prepareStatement(sql);
+			stmt = conexao.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -68,7 +75,7 @@ public class ProdutoDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar();
+			Conexao.encerrar(conexao);
 		}
 		
 		return produtos;

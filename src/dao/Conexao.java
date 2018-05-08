@@ -6,40 +6,34 @@ import java.sql.SQLException;
 
 public class Conexao {
 
-	private static Conexao instancia;
 	private static Connection conexao;
 	
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/sig";
 	private static final String USUARIO = "root";
-	private static final String SENHA = "c8LcAG0rs";
+	private static final String SENHA = "";
 	
 	private Conexao(){
+		
+	}
+	
+	public static void iniciar(Connection conexao) {
 		
 		try {
 			Class.forName(DRIVER);
 			conexao = DriverManager.getConnection(URL, USUARIO, SENHA);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
-			instancia = null;
 		}
 		
+		//return conexao;
 	}
 	
-	public static Connection iniciar() {
-		
-		if(instancia == null)
-			instancia = new Conexao();
-		
-		return conexao;
-	}
-	
-	public static void encerrar() {
+	public static void encerrar(Connection conexao) {
 		if(conexao != null) {
 			try {
 				conexao.close();
 				conexao = null;
-				instancia = null;
 			} catch (SQLException e) {
 				System.err.println(e.getMessage());
 			}
