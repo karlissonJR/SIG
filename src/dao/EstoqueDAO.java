@@ -17,7 +17,7 @@ public class EstoqueDAO {
 		String sql = "INSERT INTO estoque (codigo,nome,tipo,capacidade) VALUES (?,?,?,?)";	
 		PreparedStatement stmt;
 		
-		Conexao.iniciar(conexao);
+		conexao = Conexao.iniciar();
 		
 		try {
 			stmt = conexao.prepareStatement(sql);
@@ -46,7 +46,7 @@ public class EstoqueDAO {
 		
 		ArrayList<Estoque> estoques = new ArrayList<>();
 		
-		Conexao.iniciar(conexao);
+		conexao = Conexao.iniciar();
 		
 		try {
 			stmt = conexao.prepareStatement(sql);

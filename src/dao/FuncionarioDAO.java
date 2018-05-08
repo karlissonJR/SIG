@@ -17,7 +17,7 @@ public class FuncionarioDAO {
 		String sql = "INSERT INTO funcionario (cpf,nome,telefone,senha) VALUES (?,?,?,?)";	
 		PreparedStatement stmt;
 		
-		Conexao.iniciar(conexao);
+		conexao = Conexao.iniciar();
 		
 		try {
 			stmt = conexao.prepareStatement(sql);
@@ -46,7 +46,7 @@ public class FuncionarioDAO {
 		
 		ArrayList<Funcionario> funcionarios = new ArrayList<>();
 		
-		Conexao.iniciar(conexao);
+		conexao = Conexao.iniciar();
 		
 		try {
 			stmt = conexao.prepareStatement(sql);

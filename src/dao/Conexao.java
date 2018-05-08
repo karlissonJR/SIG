@@ -13,11 +13,9 @@ public class Conexao {
 	private static final String USUARIO = "root";
 	private static final String SENHA = "";
 	
-	private Conexao(){
-		
-	}
+	private Conexao(){}
 	
-	public static void iniciar(Connection conexao) {
+	public static Connection iniciar() {
 		
 		try {
 			Class.forName(DRIVER);
@@ -26,7 +24,7 @@ public class Conexao {
 			System.err.println(e.getMessage());
 		}
 		
-		//return conexao;
+		return conexao;
 	}
 	
 	public static void encerrar(Connection conexao) {

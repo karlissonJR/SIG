@@ -18,7 +18,7 @@ public class ProdutoDAO {
 				+ "VALUES (?,?,?,?,?,?,?)";	
 		PreparedStatement stmt;
 		
-		Conexao.iniciar(conexao);
+		conexao = Conexao.iniciar();
 		
 		try {
 			stmt = conexao.prepareStatement(sql);
@@ -50,7 +50,7 @@ public class ProdutoDAO {
 		
 		ArrayList<Produto> produtos = new ArrayList<>();
 		
-		Conexao.iniciar(conexao);
+		conexao = Conexao.iniciar();
 		
 		try {
 			stmt = conexao.prepareStatement(sql);
