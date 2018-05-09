@@ -14,10 +14,10 @@ public class FuncionarioDAO {
 
 	public void salvar(Funcionario funcionario) {
 		
+		conexao = Conexao.iniciar();
+		
 		String sql = "INSERT INTO funcionario (cpf,nome,telefone,senha) VALUES (?,?,?,?)";	
 		PreparedStatement stmt;
-		
-		conexao = Conexao.iniciar();
 		
 		try {
 			stmt = conexao.prepareStatement(sql);
@@ -40,13 +40,13 @@ public class FuncionarioDAO {
 	
 	public ArrayList<Funcionario> listar(){
 		
+		conexao = Conexao.iniciar();
+		
 		String sql = "SELECT * FROM funcionario";
 		PreparedStatement stmt;
 		ResultSet rs;
 		
 		ArrayList<Funcionario> funcionarios = new ArrayList<>();
-		
-		conexao = Conexao.iniciar();
 		
 		try {
 			stmt = conexao.prepareStatement(sql);
@@ -72,6 +72,54 @@ public class FuncionarioDAO {
 		}
 		
 		return funcionarios;
+		
+	}
+	
+	public void atualizar(Funcionario funcionario) {
+		
+		conexao = Conexao.iniciar();
+		
+		String sql = "UPDATE funcionario SET nome = ?, telefone = ?, senha = ? WHERE cpf = ?";
+		PreparedStatement stmt;
+		
+		try {
+			stmt = conexao.prepareStatement(sql);
+			
+			stmt.setString(1, funcionario.getNome());
+			stmt.setString(2, funcionario.getTelefone());
+			stmt.setString(3, funcionario.getSenha());
+			stmt.setString(4, funcionario.getCpf());
+			
+			stmt.executeUpdate();
+		}
+		catch(SQLException e) {
+			System.err.println(e.getMessage());
+		}
+		finally {
+			Conexao.encerrar(conexao);
+		}
+	}
+	
+	public void deletar(Funcionario funcionario) {
+		
+		conexao = Conexao.iniciar();
+		
+		String sql = "DELETE FROM funcionario WHERE cpf = ?";
+		PreparedStatement stmt;
+		
+		try {
+			stmt = conexao.prepareStatement(sql);
+			
+			stmt.setString(1, funcionario.getCpf());
+			
+			stmt.executeUpdate();
+		}
+		catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+		finally {
+			Conexao.encerrar(conexao);
+		}
 		
 	}
 	

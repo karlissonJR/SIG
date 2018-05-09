@@ -75,4 +75,50 @@ public class EstoqueDAO {
 		
 	}
 	
+	public void atualizar(Estoque estoque) {
+		
+		conexao = Conexao.iniciar();
+		
+		String sql = "UPDATE estoque SET nome = ?, tipo = ?, capacidade = ? WHERE codigo = ?";
+		PreparedStatement stmt;
+		
+		try {
+			stmt = conexao.prepareStatement(sql);
+			
+			stmt.setString(1, estoque.getNome());
+			stmt.setString(2, estoque.getTipo());
+			stmt.setInt(3, estoque.getCapacidade());
+			stmt.setString(4, estoque.getCodigo());
+			
+			stmt.executeUpdate();
+		}
+		catch(SQLException e) {
+			System.err.println(e.getMessage());
+		}
+		finally {
+			Conexao.encerrar(conexao);
+		}
+	}
+	
+	public void deletar(Estoque estoque) {
+		
+		conexao = Conexao.iniciar();
+		
+		String sql = "DELETE FROM estoque WHERE codigo = ?";
+		PreparedStatement stmt;
+		
+		try {
+			stmt = conexao.prepareStatement(sql);
+			
+			stmt.setString(1, estoque.getCodigo());
+			
+			stmt.executeUpdate();
+		}
+		catch(SQLException e) {
+			System.err.println(e.getMessage());
+		}
+		finally {
+			Conexao.encerrar(conexao);
+		}
+	}
 }
