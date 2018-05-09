@@ -1,0 +1,98 @@
+package controle;
+
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+import dao.FuncionarioDAO;
+import gui.Janela;
+import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import model.Funcionario;
+
+public class ControleMenuPrincipal {
+	
+	@FXML
+	private TextField campoCpfLogin;
+	@FXML
+	private TextField campoSenhaLogin;
+	@FXML
+	private TextField campoCpfCadastro;
+	@FXML
+	private TextField campoNomeCadastro;
+	@FXML
+	private TextField campoTelefoneCadastro;
+	@FXML
+	private PasswordField campoSenhaCadastro;
+	
+	@FXML
+	public void btnCadastrar() {
+		
+		FuncionarioDAO funcionarioDao = new FuncionarioDAO();
+		
+		ArrayList<Funcionario> funcionarios = funcionarioDao.listar();
+		boolean cadastrado = false;
+		
+		String cpf = campoCpfCadastro.getText();
+		String nome = campoNomeCadastro.getText();
+		String telefone = campoTelefoneCadastro.getText();
+		String senha = campoSenhaCadastro.getText();
+		
+		for(int i = 0; i < funcionarios.size(); i++) {
+			if(funcionarios.get(i).getCpf().equals(cpf)) {
+				cadastrado = true;
+				break;
+			}
+		}
+		
+		if(cadastrado) {
+			JOptionPane.showMessageDialog(null, "Funcionário Já estava cadastrado", "Cadastro", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else {
+			Funcionario funcionario = new Funcionario(cpf, nome, telefone, senha);
+			funcionarioDao.salvar(funcionario);
+		
+			JOptionPane.showMessageDialog(null, "Funcionario(a) " + nome + " cadastrado com sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+			
+			limpar();
+		}
+		
+	}
+	
+	@FXML
+	public void btnEntrar() {
+		
+		FuncionarioDAO dao = new FuncionarioDAO();
+		ArrayList<Funcionario> funcionarios = dao.listar();
+		
+		boolean login = false;
+		
+		String cpf = campoCpfLogin.getText();
+		String senha = campoSenhaLogin.getText();
+		
+		for(int i = 0; i < funcionarios.size(); i++) {
+			if(funcionarios.get(i).getCpf().equals(cpf)) {
+				if(funcionarios.get(i).getSenha().equals(senha)) {
+					login = true;
+					break;
+				}
+			}
+		}
+		
+		if(login)
+			Janela.mudarCena("menuFuncionario");
+		
+		else
+			JOptionPane.showMessageDialog(null, "CPF e/ou Senha inválidos","Login", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	private void limpar() {
+		campoCpfCadastro.setText("");
+		campoNomeCadastro.setText("");
+		campoTelefoneCadastro.setText("");
+		campoSenhaCadastro.setText("");
+	}
+
+}

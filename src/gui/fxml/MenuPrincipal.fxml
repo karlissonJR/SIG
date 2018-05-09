@@ -1,8 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1">
-	
-</BorderPane>
-
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="844.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controle.ControleMenuPrincipal">
+   <children>
+      <Label layoutX="278.0" layoutY="68.0" text="Login">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Label layoutX="532.0" layoutY="68.0" text="Cadastrar">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Label layoutX="247.0" layoutY="144.0" text="CPF">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="247.0" layoutY="207.0" text="Senha">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="532.0" layoutY="142.0" text="CPF">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="533.0" layoutY="197.0" text="Nome">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="533.0" layoutY="257.0" text="Telefone">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="533.0" layoutY="316.0" text="Senha">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button layoutX="249.0" layoutY="276.0" mnemonicParsing="false" text="Entar" />
+      <Button layoutX="536.0" layoutY="386.0" mnemonicParsing="false" text="Cadastrar" />
+      <TextField layoutX="247.0" layoutY="163.0" />
+      <PasswordField layoutX="247.0" layoutY="227.0" />
+      <PasswordField layoutX="533.0" layoutY="336.0" />
+      <TextField layoutX="530.0" layoutY="160.0" />
+      <TextField layoutX="530.0" layoutY="216.0" />
+      <TextField layoutX="532.0" layoutY="277.0" />
+   </children>
+</Pane>

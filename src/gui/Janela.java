@@ -10,6 +10,7 @@ public class Janela extends Application{
 
 	private static Stage stage;
 	private static Scene menuPrincipal;
+	private static Scene menuDoFuncionario;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -19,8 +20,11 @@ public class Janela extends Application{
 		Pane fxmlMenuPrincipal = FXMLLoader.load(getClass().getResource("fxml/MenuPrincipal.fxml"));
 		menuPrincipal = new Scene(fxmlMenuPrincipal);
 		
-		primaryStage.setWidth(500);
-		primaryStage.setHeight(400);
+		Pane fxmlMenuDoFuncionario = FXMLLoader.load(getClass().getResource("fxml/MenuDoFuncionario.fxml"));
+		menuDoFuncionario = new Scene(fxmlMenuDoFuncionario);
+		
+		primaryStage.setWidth(800);
+		primaryStage.setHeight(600);
 		primaryStage.setScene(menuPrincipal);
 		primaryStage.setTitle("SIG");
 		primaryStage.setResizable(false);
@@ -32,4 +36,12 @@ public class Janela extends Application{
 		launch(args);
 	}
 
+	public static void mudarCena(String cena) {
+		switch(cena) {
+		case "menuFuncionario":
+			stage.setScene(menuDoFuncionario);
+			break;
+		}
+	}
+	
 }
