@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controle.ControleTelaCadastroEstoque">
+   <children>
+      <Label layoutX="76.0" layoutY="49.0" text="Codigo">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="82.0" layoutY="108.0" text="Nome">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="96.0" layoutY="164.0" text="Tipo">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="218.0" text="Capacidade">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="169.0" layoutY="47.0" fx:id="campoCodigo"/>
+      <TextField layoutX="169.0" layoutY="106.0" fx:id="campoNome" />
+      <TextField layoutX="169.0" layoutY="162.0" fx:id="campoTipo"/>
+      <TextField layoutX="169.0" layoutY="216.0" fx:id="campoCapacidade"/>
+      <Button layoutX="169.0" layoutY="298.0" mnemonicParsing="false" text="Cadastrar" onAction="#btnCadastrarEstoque"/>
+   </children>
+</Pane>

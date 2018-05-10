@@ -5,13 +5,23 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controle.ControleMenuDoFuncionario">
    <children>
-      <Label layoutX="235.0" layoutY="180.0" text="OLOKO">
-         <font>
-            <Font name="System Bold Italic" size="33.0" />
-         </font>
-      </Label>
+      <ChoiceBox fx:id="cbEstoques" layoutX="225.0" layoutY="181.0" prefWidth="150.0" />
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Conta">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Sair" onAction="#menuSair"/>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Cadastrar">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Estoque" onAction="#menuCadastrarEstoque"/>
+              <MenuItem mnemonicParsing="false" text="Produto" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </Pane>

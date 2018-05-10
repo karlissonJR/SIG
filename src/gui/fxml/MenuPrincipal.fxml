@@ -47,13 +47,13 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="249.0" layoutY="276.0" mnemonicParsing="false" text="Entar" />
-      <Button layoutX="536.0" layoutY="386.0" mnemonicParsing="false" text="Cadastrar" />
-      <TextField layoutX="247.0" layoutY="163.0" />
-      <PasswordField layoutX="247.0" layoutY="227.0" />
-      <PasswordField layoutX="533.0" layoutY="336.0" />
-      <TextField layoutX="530.0" layoutY="160.0" />
-      <TextField layoutX="530.0" layoutY="216.0" />
-      <TextField layoutX="532.0" layoutY="277.0" />
+      <Button layoutX="249.0" layoutY="276.0" mnemonicParsing="false" onAction="#btnEntrar" text="Entar" />
+      <Button layoutX="536.0" layoutY="386.0" mnemonicParsing="false" onAction="#btnCadastrar" text="Cadastrar" />
+      <TextField fx:id="campoCpfLogin" layoutX="247.0" layoutY="163.0" />
+      <PasswordField fx:id="campoSenhaLogin" layoutX="247.0" layoutY="227.0" />
+      <PasswordField fx:id="campoSenhaCadastro" layoutX="533.0" layoutY="336.0" />
+      <TextField fx:id="campoCpfCadastro" layoutX="530.0" layoutY="160.0" />
+      <TextField fx:id="campoNomeCadastro" layoutX="530.0" layoutY="216.0" />
+      <TextField fx:id="campoTelefoneCadastro" layoutX="532.0" layoutY="277.0" />
    </children>
 </Pane>

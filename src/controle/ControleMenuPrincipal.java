@@ -29,9 +29,9 @@ public class ControleMenuPrincipal {
 	@FXML
 	public void btnCadastrar() {
 		
-		FuncionarioDAO funcionarioDao = new FuncionarioDAO();
+		FuncionarioDAO dao = new FuncionarioDAO();
 		
-		ArrayList<Funcionario> funcionarios = funcionarioDao.listar();
+		ArrayList<Funcionario> funcionarios = dao.listar();
 		boolean cadastrado = false;
 		
 		String cpf = campoCpfCadastro.getText();
@@ -52,11 +52,11 @@ public class ControleMenuPrincipal {
 		
 		else {
 			Funcionario funcionario = new Funcionario(cpf, nome, telefone, senha);
-			funcionarioDao.salvar(funcionario);
+			dao.salvar(funcionario);
 		
 			JOptionPane.showMessageDialog(null, "Funcionario(a) " + nome + " cadastrado com sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
 			
-			limpar();
+			limparCadastro();
 		}
 		
 	}
@@ -81,18 +81,25 @@ public class ControleMenuPrincipal {
 			}
 		}
 		
-		if(login)
+		if(login) {
 			Janela.mudarCena("menuFuncionario");
-		
+			limparLogin();
+		}
 		else
 			JOptionPane.showMessageDialog(null, "CPF e/ou Senha inválidos","Login", JOptionPane.ERROR_MESSAGE);
 	}
 	
-	private void limpar() {
+	private void limparCadastro() {
 		campoCpfCadastro.setText("");
 		campoNomeCadastro.setText("");
 		campoTelefoneCadastro.setText("");
 		campoSenhaCadastro.setText("");
+	}
+	
+	private void limparLogin() {
+		campoCpfLogin.setText("");
+		campoSenhaLogin.setText("");
+		limparCadastro();
 	}
 
 }
