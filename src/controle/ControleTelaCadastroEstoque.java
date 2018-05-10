@@ -3,6 +3,7 @@ package controle;
 import javax.swing.JOptionPane;
 
 import dao.EstoqueDAO;
+import gui.Janela;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import model.Estoque;
@@ -31,7 +32,10 @@ public class ControleTelaCadastroEstoque {
 		dao.salvar(estoque);
 		
 		JOptionPane.showMessageDialog(null, nome + " cadastrado!", "Estoque", JOptionPane.INFORMATION_MESSAGE);
-		JOptionPane.showConfirmDialog(null, "Continuar cadastrando", "Estoque", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+		int resposta = JOptionPane.showConfirmDialog(null, "Continuar cadastrando", "Estoque", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+		
+		if(resposta == 1)
+			Janela.mudarCena("menuFuncionario");
 		
 		limpar();
 	}

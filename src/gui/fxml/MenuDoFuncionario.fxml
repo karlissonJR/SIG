@@ -7,21 +7,31 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controle.ControleMenuDoFuncionario">
    <children>
-      <ChoiceBox fx:id="cbEstoques" layoutX="225.0" layoutY="181.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="cbEstoques" layoutX="20.0" layoutY="51.0" prefWidth="150.0" />
       <MenuBar>
         <menus>
           <Menu mnemonicParsing="false" text="Conta">
             <items>
-              <MenuItem mnemonicParsing="false" text="Sair" onAction="#menuSair"/>
+              <MenuItem mnemonicParsing="false" onAction="#menuSair" text="Sair" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Cadastrar">
             <items>
-              <MenuItem mnemonicParsing="false" text="Estoque" onAction="#menuCadastrarEstoque"/>
-              <MenuItem mnemonicParsing="false" text="Produto" />
+              <MenuItem mnemonicParsing="false" onAction="#menuCadastrarEstoque" text="Estoque" />
+              <MenuItem mnemonicParsing="false" text="Produto" onAction="#menuCadastrarProduto" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
+      <TableView layoutX="14.0" layoutY="138.0" prefHeight="200.0" prefWidth="720.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Codigo" />
+          <TableColumn prefWidth="175.0" text="Nome" />
+          <TableColumn prefWidth="175.0" text="Tipo" />
+          <TableColumn prefWidth="115.0" text="Quantidade" />
+          <TableColumn prefWidth="100.0" text="Preço" />
+          <TableColumn prefWidth="80.0" text="Validade" />
+        </columns>
+      </TableView>
    </children>
 </Pane>

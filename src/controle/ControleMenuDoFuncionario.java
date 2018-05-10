@@ -2,6 +2,8 @@ package controle;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import dao.EstoqueDAO;
 import gui.Janela;
 import javafx.collections.FXCollections;
@@ -15,17 +17,17 @@ public class ControleMenuDoFuncionario {
 	private ChoiceBox<String> cbEstoques;
 	
 	@FXML
-	private void initialize() {
+	public void initialize() {
 		
 		EstoqueDAO dao = new EstoqueDAO();
 		ArrayList<Estoque> estoques = dao.listar();
-		ArrayList<String> nomeEstoques = new ArrayList<>();
+		ArrayList<String> codigoEstoques = new ArrayList<>();
 		
 		for(int i = 0; i < estoques.size(); i++)
-			nomeEstoques.add(estoques.get(i).getNome());
+			codigoEstoques.add(estoques.get(i).getCodigo());
 		
-		cbEstoques.setItems(FXCollections.observableArrayList(nomeEstoques));
-		cbEstoques.setValue(nomeEstoques.get(0));
+		cbEstoques.setItems(FXCollections.observableArrayList(codigoEstoques));
+		cbEstoques.setValue(codigoEstoques.get(0));
 	}
 	
 	@FXML
@@ -38,4 +40,13 @@ public class ControleMenuDoFuncionario {
 		Janela.mudarCena("telaCadastroEstoque");
 	}
 	
+	@FXML
+	public void menuCadastrarProduto() {
+		Janela.mudarCena("telaCadastroProduto");
+	}
+	
+	@FXML
+	public void tabela() {
+		//JOptionPane.showMessageDialog(null, cbEstoques.getValue(), "Teste", JOptionPane.INFORMATION_MESSAGE);
+	}
 }
