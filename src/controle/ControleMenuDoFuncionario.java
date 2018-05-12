@@ -47,9 +47,9 @@ public class ControleMenuDoFuncionario {
 		for(int i = 0; i < estoques.size(); i++)
 			nomeEstoques.add(estoques.get(i).getNome());
 		
-		int indice = nomeEstoques.indexOf(cbEstoques.getValue());
-		if(cbEstoques.getValue().equals(nomeEstoques.get(indice))) {
-			if(nomeEstoques.size() > 0) {
+		if(nomeEstoques.size() > 0) {
+			int indice = nomeEstoques.indexOf(cbEstoques.getValue());
+			if(cbEstoques.getValue().equals(nomeEstoques.get(indice))) {
 				cbEstoques.setItems(FXCollections.observableArrayList(nomeEstoques));
 				cbEstoques.setValue(nomeEstoques.get(indice));
 			}
@@ -68,7 +68,14 @@ public class ControleMenuDoFuncionario {
 	
 	@FXML
 	public void menuCadastrarProduto() {
-		Janela.mudarCena("telaCadastroProduto");
+		
+		EstoqueDAO dao = new EstoqueDAO();
+		
+		if(dao.listar().isEmpty())
+			JOptionPane.showMessageDialog(null, "Cadastre pelo meos um estoque antes de cadastrar os produtos", "Produto", JOptionPane.INFORMATION_MESSAGE);
+		
+		else
+			Janela.mudarCena("telaCadastroProduto");
 	}
 	
 	@FXML

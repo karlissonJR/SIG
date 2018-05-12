@@ -24,40 +24,20 @@ public class Produto {
 		return this.codigo;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
 	public String getNome() {
 		return this.nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public double getPreco() {
 		return this.preco;
 	}
 
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
-
 	public String getTipo() {
 		return this.tipo;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
 	public int getQuantidade() {
 		return this.quantidade;
-	}
-
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
 	}
 
 	public String getValidade() {
@@ -67,7 +47,4 @@ public class Produto {
 	public String getCodigoEstoque() {
 		return this.codigoEstoque;
 	}
-	
-	
-
 }

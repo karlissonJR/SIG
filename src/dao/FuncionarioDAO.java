@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,17 +9,15 @@ import model.Funcionario;
 
 public class FuncionarioDAO {
 	
-	private Connection conexao;
+	//private Connection conexao;
 
 	public void salvar(Funcionario funcionario) {
-		
-		conexao = Conexao.iniciar();
 		
 		String sql = "INSERT INTO funcionario (cpf,nome,telefone,senha) VALUES (?,?,?,?)";	
 		PreparedStatement stmt;
 		
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = Conexao.iniciar().prepareStatement(sql);
 			
 			stmt.setString(1, funcionario.getCpf());
 			stmt.setString(2, funcionario.getNome());
@@ -33,14 +30,12 @@ public class FuncionarioDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar(conexao);
+			//Conexao.encerrar(conexao);
 		}
 		
 	}
 	
 	public ArrayList<Funcionario> listar(){
-		
-		conexao = Conexao.iniciar();
 		
 		String sql = "SELECT * FROM funcionario";
 		PreparedStatement stmt;
@@ -49,7 +44,7 @@ public class FuncionarioDAO {
 		ArrayList<Funcionario> funcionarios = new ArrayList<>();
 		
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = Conexao.iniciar().prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -68,7 +63,7 @@ public class FuncionarioDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar(conexao);
+			//Conexao.encerrar(conexao);
 		}
 		
 		return funcionarios;
@@ -77,13 +72,11 @@ public class FuncionarioDAO {
 	
 	public void atualizar(Funcionario funcionario) {
 		
-		conexao = Conexao.iniciar();
-		
 		String sql = "UPDATE funcionario SET nome = ?, telefone = ?, senha = ? WHERE cpf = ?";
 		PreparedStatement stmt;
 		
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = Conexao.iniciar().prepareStatement(sql);
 			
 			stmt.setString(1, funcionario.getNome());
 			stmt.setString(2, funcionario.getTelefone());
@@ -96,19 +89,17 @@ public class FuncionarioDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar(conexao);
+			//Conexao.encerrar(conexao);
 		}
 	}
 	
 	public void deletar(Funcionario funcionario) {
 		
-		conexao = Conexao.iniciar();
-		
 		String sql = "DELETE FROM funcionario WHERE cpf = ?";
 		PreparedStatement stmt;
 		
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = Conexao.iniciar().prepareStatement(sql);
 			
 			stmt.setString(1, funcionario.getCpf());
 			
@@ -118,7 +109,7 @@ public class FuncionarioDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar(conexao);
+			//Conexao.encerrar(conexao);
 		}
 		
 	}

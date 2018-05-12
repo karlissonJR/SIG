@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,17 +9,13 @@ import model.Estoque;
 
 public class EstoqueDAO {
 
-	private Connection conexao;
-	
 	public void salvar(Estoque estoque) {
 		
 		String sql = "INSERT INTO estoque (codigo,nome,tipo,capacidade) VALUES (?,?,?,?)";	
 		PreparedStatement stmt;
 		
-		conexao = Conexao.iniciar();
-		
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = Conexao.iniciar().prepareStatement(sql);
 			
 			stmt.setString(1, estoque.getCodigo());
 			stmt.setString(2, estoque.getNome());
@@ -33,7 +28,7 @@ public class EstoqueDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar(conexao);
+			//Conexao.encerrar(conexao);
 		}
 		
 	}
@@ -46,10 +41,8 @@ public class EstoqueDAO {
 		
 		ArrayList<Estoque> estoques = new ArrayList<>();
 		
-		conexao = Conexao.iniciar();
-		
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = Conexao.iniciar().prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -68,7 +61,7 @@ public class EstoqueDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar(conexao);
+			//Conexao.encerrar(conexao);
 		}
 		
 		return estoques;
@@ -83,10 +76,8 @@ public class EstoqueDAO {
 		
 		ArrayList<Estoque> estoques = new ArrayList<>();
 		
-		conexao = Conexao.iniciar();
-		
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = Conexao.iniciar().prepareStatement(sql);
 			
 			stmt.setString(1, tipoEscolhido);
 			
@@ -108,7 +99,7 @@ public class EstoqueDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar(conexao);
+			//Conexao.encerrar(conexao);
 		}
 		
 		return estoques;
@@ -117,13 +108,11 @@ public class EstoqueDAO {
 	
 	public void atualizar(Estoque estoque) {
 		
-		conexao = Conexao.iniciar();
-		
 		String sql = "UPDATE estoque SET nome = ?, tipo = ?, capacidade = ? WHERE codigo = ?";
 		PreparedStatement stmt;
 		
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = Conexao.iniciar().prepareStatement(sql);
 			
 			stmt.setString(1, estoque.getNome());
 			stmt.setString(2, estoque.getTipo());
@@ -136,19 +125,17 @@ public class EstoqueDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar(conexao);
+			//Conexao.encerrar(conexao);
 		}
 	}
 	
 	public void deletar(Estoque estoque) {
 		
-		conexao = Conexao.iniciar();
-		
 		String sql = "DELETE FROM estoque WHERE codigo = ?";
 		PreparedStatement stmt;
 		
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = Conexao.iniciar().prepareStatement(sql);
 			
 			stmt.setString(1, estoque.getCodigo());
 			
@@ -158,7 +145,7 @@ public class EstoqueDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar(conexao);
+			//Conexao.encerrar(conexao);
 		}
 	}
 }

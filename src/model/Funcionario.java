@@ -26,20 +26,7 @@ public class Funcionario {
 		return this.telefone;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
 	public String getSenha() {
 		return this.senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-	
-	@Override
-	public String toString() {
-		return String.format("CPF: %s\nNome: %s\nTelefone: %s\n", getCpf(), getNome(), getTelefone());
 	}
 }

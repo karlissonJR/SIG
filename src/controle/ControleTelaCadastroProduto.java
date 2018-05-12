@@ -63,6 +63,11 @@ public class ControleTelaCadastroProduto {
 			campoEstoque.setItems(FXCollections.observableArrayList(nomeEstoques));
 			campoEstoque.setValue(nomeEstoques.get(0));
 		}
+		
+		else {
+			campoEstoque.setItems(FXCollections.observableArrayList());
+			campoEstoque.setValue("");
+		}
 	}
 	
 	@FXML

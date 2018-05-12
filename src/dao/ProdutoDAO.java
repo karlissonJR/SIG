@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,19 +8,15 @@ import java.util.ArrayList;
 import model.Produto;
 
 public class ProdutoDAO {
-	
-	private Connection conexao;
 
 	public void salvar(Produto produto) {
-		
-		conexao = Conexao.iniciar();
 		
 		String sql = "INSERT INTO produto (codigo,nome,tipo,quantidade,preco,validade,codigo_estoque) "
 				+ "VALUES (?,?,?,?,?,?,?)";	
 		PreparedStatement stmt;
 		
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = Conexao.iniciar().prepareStatement(sql);
 			
 			stmt.setString(1, produto.getCodigo());
 			stmt.setString(2, produto.getNome());
@@ -37,14 +32,12 @@ public class ProdutoDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar(conexao);
+			//Conexao.encerrar(conexao);
 		}
 		
 	}
 	
 	public ArrayList<Produto> listar(){
-		
-		conexao = Conexao.iniciar();
 		
 		String sql = "SELECT * FROM produto";
 		PreparedStatement stmt;
@@ -53,7 +46,7 @@ public class ProdutoDAO {
 		ArrayList<Produto> produtos = new ArrayList<>();
 		
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = Conexao.iniciar().prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -75,7 +68,7 @@ public class ProdutoDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar(conexao);
+			//Conexao.encerrar(conexao);
 		}
 		
 		return produtos;
@@ -84,8 +77,6 @@ public class ProdutoDAO {
 	
 	public ArrayList<Produto> listarPorCodigoEstoque(String cod){
 		
-		conexao = Conexao.iniciar();
-		
 		String sql = "SELECT * FROM produto WHERE codigo_estoque = ?";
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -93,7 +84,7 @@ public class ProdutoDAO {
 		ArrayList<Produto> produtos = new ArrayList<>();
 		
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = Conexao.iniciar().prepareStatement(sql);
 			
 			stmt.setString(1, cod);
 			
@@ -118,7 +109,7 @@ public class ProdutoDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar(conexao);
+			//Conexao.encerrar(conexao);
 		}
 		
 		return produtos;
@@ -127,13 +118,11 @@ public class ProdutoDAO {
 	
 	public void atualizar(Produto produto) {
 		
-		conexao = Conexao.iniciar();
-		
 		String sql = "UPDATE produto SET nome = ?, tipo = ?, quantidade = ?, preco = ? WHERE codigo = ?";
 		PreparedStatement stmt;
 		
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = Conexao.iniciar().prepareStatement(sql);
 			
 			stmt.setString(1, produto.getNome());
 			stmt.setString(2, produto.getTipo());
@@ -147,19 +136,17 @@ public class ProdutoDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar(conexao);
+			//Conexao.encerrar(conexao);
 		}
 	}
 	
 	public void deletar(Produto produto) {
 		
-		conexao = Conexao.iniciar();
-		
 		String sql = "DELETE FROM produto WHERE codigo = ?";
 		PreparedStatement stmt;
 		
 		try {
-			stmt = conexao.prepareStatement(sql);
+			stmt = Conexao.iniciar().prepareStatement(sql);
 			
 			stmt.setString(1, produto.getCodigo());
 			
@@ -169,7 +156,7 @@ public class ProdutoDAO {
 			System.err.println(e.getMessage());
 		}
 		finally {
-			Conexao.encerrar(conexao);
+			//Conexao.encerrar(conexao);
 		}
 	}
 	
