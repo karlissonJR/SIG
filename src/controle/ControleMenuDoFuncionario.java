@@ -38,9 +38,27 @@ public class ControleMenuDoFuncionario {
 	}
 	
 	@FXML
+	public void atualizar() {
+		
+		EstoqueDAO dao = new EstoqueDAO();
+		ArrayList<Estoque> estoques = dao.listar();
+		ArrayList<String> nomeEstoques = new ArrayList<>();
+		
+		for(int i = 0; i < estoques.size(); i++)
+			nomeEstoques.add(estoques.get(i).getNome());
+		
+		int indice = nomeEstoques.indexOf(cbEstoques.getValue());
+		if(cbEstoques.getValue().equals(nomeEstoques.get(indice))) {
+			if(nomeEstoques.size() > 0) {
+				cbEstoques.setItems(FXCollections.observableArrayList(nomeEstoques));
+				cbEstoques.setValue(nomeEstoques.get(indice));
+			}
+		}
+	}
+	
+	@FXML
 	public void menuSair() {
 		Janela.mudarCena("menuPrincipal");
-		initialize();
 	}
 	
 	@FXML
