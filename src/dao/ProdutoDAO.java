@@ -82,6 +82,49 @@ public class ProdutoDAO {
 		
 	}
 	
+	public ArrayList<Produto> listarPorCodigoEstoque(String cod){
+		
+		conexao = Conexao.iniciar();
+		
+		String sql = "SELECT * FROM produto WHERE codigo_estoque = ?";
+		PreparedStatement stmt;
+		ResultSet rs;
+		
+		ArrayList<Produto> produtos = new ArrayList<>();
+		
+		try {
+			stmt = conexao.prepareStatement(sql);
+			
+			stmt.setString(1, cod);
+			
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				String codigo = rs.getString("codigo");
+				String nome = rs.getString("nome");
+				String tipo = rs.getString("tipo");
+				int quantidade = rs.getInt("quantidade");
+				double preco = rs.getDouble("preco");
+				String validade = rs.getString("validade");
+				String codigoEstoque = rs.getString("codigo_estoque");
+				
+				Produto produto = new Produto(codigo, nome, preco, tipo, quantidade, validade, codigoEstoque);
+				produtos.add(produto);
+				
+			}
+		}
+		catch(SQLException e) {
+			System.err.println(e.getMessage());
+		}
+		finally {
+			Conexao.encerrar(conexao);
+		}
+		
+		return produtos;
+		
+	}
+	
 	public void atualizar(Produto produto) {
 		
 		conexao = Conexao.iniciar();

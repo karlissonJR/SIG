@@ -4,10 +4,11 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controle.ControleMenuDoFuncionario">
    <children>
-      <ChoiceBox fx:id="cbEstoques" layoutX="20.0" layoutY="51.0" prefWidth="150.0" />
+      <ChoiceBox onAction="#tabela" fx:id="cbEstoques" layoutX="20.0" layoutY="51.0" prefWidth="150.0" />
       <MenuBar>
         <menus>
           <Menu mnemonicParsing="false" text="Conta">
@@ -23,14 +24,33 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TableView layoutX="14.0" layoutY="138.0" prefHeight="200.0" prefWidth="720.0">
+      <TableView fx:id="tabelaProdutos" layoutX="14.0" layoutY="138.0" prefHeight="200.0" prefWidth="720.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Codigo" />
-          <TableColumn prefWidth="175.0" text="Nome" />
-          <TableColumn prefWidth="175.0" text="Tipo" />
-          <TableColumn prefWidth="115.0" text="Quantidade" />
-          <TableColumn prefWidth="100.0" text="Preço" />
-          <TableColumn prefWidth="80.0" text="Validade" />
+          <TableColumn prefWidth="100.0" text="Codigo">
+          	<cellValueFactory>
+				<PropertyValueFactory property="codigo" />
+			</cellValueFactory>
+          </TableColumn>
+          <TableColumn prefWidth="250.0" text="Nome">
+         	<cellValueFactory>
+				<PropertyValueFactory property="nome" />
+			</cellValueFactory>
+          </TableColumn>
+          <TableColumn prefWidth="115.0" text="Quantidade">
+          	<cellValueFactory>
+				<PropertyValueFactory property="quantidade" />
+			</cellValueFactory>
+          </TableColumn>
+          <TableColumn prefWidth="125.0" text="Preço">
+          	<cellValueFactory>
+				<PropertyValueFactory property="preco" />
+			</cellValueFactory>
+          </TableColumn>
+          <TableColumn prefWidth="130.0" text="Validade">
+          	<cellValueFactory>
+				<PropertyValueFactory property="validade" />
+			</cellValueFactory>
+          </TableColumn>
         </columns>
       </TableView>
    </children>

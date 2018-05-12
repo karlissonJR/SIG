@@ -46,7 +46,13 @@ public class ControleMenuPrincipal {
 			}
 		}
 		
-		if(cadastrado) {
+		
+		if(campoCpfCadastro.getText().isEmpty() || campoNomeCadastro.getText().isEmpty() ||
+				campoTelefoneCadastro.getText().isEmpty() || campoSenhaCadastro.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha todos os campos", "Cadastro", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		else if(cadastrado) {
 			JOptionPane.showMessageDialog(null, "Funcionário Já estava cadastrado", "Cadastro", JOptionPane.ERROR_MESSAGE);
 		}
 		

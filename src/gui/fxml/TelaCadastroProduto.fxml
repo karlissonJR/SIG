@@ -5,8 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controle.ControleTelaCadastroProduto">
    <children>
       <Label layoutX="74.0" layoutY="52.0" text="Codigo">
          <font>
@@ -43,13 +42,13 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="162.0" layoutY="50.0" />
-      <TextField layoutX="162.0" layoutY="94.0" />
-      <TextField layoutX="162.0" layoutY="175.0" />
-      <TextField layoutX="162.0" layoutY="216.0" />
-      <TextField layoutX="162.0" layoutY="260.0" />
-      <ChoiceBox layoutX="164.0" layoutY="307.0" prefHeight="25.0" prefWidth="170.0" />
-      <ChoiceBox layoutX="162.0" layoutY="140.0" prefHeight="25.0" prefWidth="170.0" />
-      <Button layoutX="171.0" layoutY="380.0" mnemonicParsing="false" text="Cadastrar" />
+      <TextField fx:id="campoCodigo" layoutX="162.0" layoutY="50.0" />
+      <TextField fx:id="campoNome" layoutX="162.0" layoutY="94.0" />
+      <TextField fx:id="campoQuantidade" layoutX="162.0" layoutY="175.0" />
+      <TextField fx:id="campoPreco" layoutX="162.0" layoutY="216.0" />
+      <TextField fx:id="campoValidade" layoutX="162.0" layoutY="260.0" />
+      <ChoiceBox fx:id="campoEstoque" layoutX="164.0" layoutY="307.0" prefHeight="25.0" prefWidth="170.0" />
+      <ChoiceBox fx:id="campoTipo" layoutX="162.0" layoutY="140.0" onAction="#choiceBoxCampoTipo" prefHeight="25.0" prefWidth="170.0" />
+      <Button layoutX="171.0" layoutY="380.0" mnemonicParsing="false" text="Cadastrar" onAction="#btnCadastrarProduto"/>
    </children>
 </Pane>

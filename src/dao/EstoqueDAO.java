@@ -75,6 +75,46 @@ public class EstoqueDAO {
 		
 	}
 	
+	public ArrayList<Estoque> listarPorTipo(String tipoEscolhido){
+		
+		String sql = "SELECT * FROM estoque WHERE tipo = ?";
+		PreparedStatement stmt;
+		ResultSet rs;
+		
+		ArrayList<Estoque> estoques = new ArrayList<>();
+		
+		conexao = Conexao.iniciar();
+		
+		try {
+			stmt = conexao.prepareStatement(sql);
+			
+			stmt.setString(1, tipoEscolhido);
+			
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				String codigo = rs.getString("codigo");
+				String nome = rs.getString("nome");
+				String tipo = rs.getString("tipo");
+				int capacidade = rs.getInt("capacidade");
+				
+				Estoque estoque = new Estoque(codigo, nome, tipo, capacidade);
+				estoques.add(estoque);
+				
+			}
+		}
+		catch(SQLException e) {
+			System.err.println(e.getMessage());
+		}
+		finally {
+			Conexao.encerrar(conexao);
+		}
+		
+		return estoques;
+		
+	}
+	
 	public void atualizar(Estoque estoque) {
 		
 		conexao = Conexao.iniciar();
