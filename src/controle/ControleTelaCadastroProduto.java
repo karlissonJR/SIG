@@ -68,36 +68,42 @@ public class ControleTelaCadastroProduto {
 	@FXML
 	public void btnCadastrarProduto() {
 		
-		String codigo = campoCodigo.getText();
-		String nome = campoNome.getText();
-		String tipo = campoTipo.getValue();
-		int quantidade = Integer.parseInt(campoQuantidade.getText());
-		double preco = Double.parseDouble(campoPreco.getText());
-		String validade = campoValidade.getText();
-		String nomeEstoque = campoEstoque.getValue();
-		String estoque = "";
+		if(campoCodigo.getText().isEmpty() || campoNome.getText().isEmpty() || campoQuantidade.getText().isEmpty() ||
+				campoPreco.getText().isEmpty() || campoValidade.getText().isEmpty())
+			JOptionPane.showMessageDialog(null, "Preencha todos os campos", "Produto", JOptionPane.ERROR_MESSAGE);
 		
-		EstoqueDAO estDao = new EstoqueDAO();
-		ArrayList<Estoque> estoques = estDao.listarPorTipo(tipo);
-		
-		for(int i = 0; i < estoques.size(); i++) {
-			if(estoques.get(i).getNome().equals(nomeEstoque)) {
-				estoque = estoques.get(i).getCodigo();
-				break;
+		else {
+			String codigo = campoCodigo.getText();
+			String nome = campoNome.getText();
+			String tipo = campoTipo.getValue();
+			int quantidade = Integer.parseInt(campoQuantidade.getText());
+			double preco = Double.parseDouble(campoPreco.getText());
+			String validade = campoValidade.getText();
+			String nomeEstoque = campoEstoque.getValue();
+			String estoque = "";
+			
+			EstoqueDAO estDao = new EstoqueDAO();
+			ArrayList<Estoque> estoques = estDao.listarPorTipo(tipo);
+			
+			for(int i = 0; i < estoques.size(); i++) {
+				if(estoques.get(i).getNome().equals(nomeEstoque)) {
+					estoque = estoques.get(i).getCodigo();
+					break;
+				}
 			}
+			
+			ProdutoDAO dao = new ProdutoDAO();
+			Produto produto = new Produto(codigo, nome, preco, tipo, quantidade, validade, estoque);
+			dao.salvar(produto);
+			
+			JOptionPane.showMessageDialog(null, nome + " cadastrado!", "Produto", JOptionPane.INFORMATION_MESSAGE);
+			int resposta = JOptionPane.showConfirmDialog(null, "Continuar cadastrando", "Produto", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+			
+			if(resposta == 1)
+				Janela.mudarCena("menuFuncionario");
+			
+			limpar();
 		}
-		
-		ProdutoDAO dao = new ProdutoDAO();
-		Produto produto = new Produto(codigo, nome, preco, tipo, quantidade, validade, estoque);
-		dao.salvar(produto);
-		
-		JOptionPane.showMessageDialog(null, nome + " cadastrado!", "Produto", JOptionPane.INFORMATION_MESSAGE);
-		int resposta = JOptionPane.showConfirmDialog(null, "Continuar cadastrando", "Produto", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-		
-		if(resposta == 1)
-			Janela.mudarCena("menuFuncionario");
-		
-		limpar();
 	}
 	
 	private void limpar() {
