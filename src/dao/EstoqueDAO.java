@@ -27,9 +27,6 @@ public class EstoqueDAO {
 		catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
-		finally {
-			//Conexao.encerrar(conexao);
-		}
 		
 	}
 	
@@ -59,9 +56,6 @@ public class EstoqueDAO {
 		}
 		catch(SQLException e) {
 			System.err.println(e.getMessage());
-		}
-		finally {
-			//Conexao.encerrar(conexao);
 		}
 		
 		return estoques;
@@ -98,9 +92,6 @@ public class EstoqueDAO {
 		catch(SQLException e) {
 			System.err.println(e.getMessage());
 		}
-		finally {
-			//Conexao.encerrar(conexao);
-		}
 		
 		return estoques;
 		
@@ -124,9 +115,6 @@ public class EstoqueDAO {
 		catch(SQLException e) {
 			System.err.println(e.getMessage());
 		}
-		finally {
-			//Conexao.encerrar(conexao);
-		}
 	}
 	
 	public void deletar(Estoque estoque) {
@@ -143,9 +131,6 @@ public class EstoqueDAO {
 		}
 		catch(SQLException e) {
 			System.err.println(e.getMessage());
-		}
-		finally {
-			//Conexao.encerrar(conexao);
 		}
 	}
 }
