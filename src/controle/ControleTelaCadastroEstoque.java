@@ -74,6 +74,12 @@ public class ControleTelaCadastroEstoque {
 		}
 	}
 	
+	@FXML
+	public void btnCancelar() {
+		Janela.mudarCena("menuFuncionario");
+		limpar();
+	}
+	
 	private void limpar() {
 		campoCodigo.setText("");
 		campoNome.setText("");

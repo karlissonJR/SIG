@@ -111,6 +111,12 @@ public class ControleTelaCadastroProduto {
 		}
 	}
 	
+	@FXML
+	public void btnCancelar() {
+		Janela.mudarCena("menuFuncionario");
+		limpar();
+	}
+	
 	private void limpar() {
 		campoCodigo.setText("");
 		campoNome.setText("");
