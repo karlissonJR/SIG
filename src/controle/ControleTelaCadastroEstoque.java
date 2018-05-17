@@ -26,7 +26,7 @@ public class ControleTelaCadastroEstoque {
 	@FXML
 	private void initialize() {
 		
-		String[] tipos = {"Eletrônicos", "Alimentos"};
+		String[] tipos = {"Eletrônicos", "Alimentos", "Livros", "Cozinha"};
 		
 		campoTipo.setItems(FXCollections.observableArrayList(tipos));
 		campoTipo.setValue(tipos[0]);

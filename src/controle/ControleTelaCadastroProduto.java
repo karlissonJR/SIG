@@ -33,7 +33,7 @@ public class ControleTelaCadastroProduto {
 	
 	@FXML
 	private void initialize() {
-		String[] tipos = {"Eletrônicos", "Alimentos"};
+		String[] tipos = {"Eletrônicos", "Alimentos" ,"Livros", "Cozinha"};
 		EstoqueDAO dao = new EstoqueDAO();
 		ArrayList<Estoque> estoques = dao.listarPorTipo(tipos[0]);
 		ArrayList<String> nomeEstoques = new ArrayList<>();

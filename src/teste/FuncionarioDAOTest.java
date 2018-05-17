@@ -8,16 +8,16 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import dao.EstoqueDAO;
-import model.Estoque;
+import dao.FuncionarioDAO;
+import model.Funcionario;
+import model.Produto;
 
-public class EstoqueDAOTest {
+public class FuncionarioDAOTest {
 	
-	EstoqueDAO dao = new EstoqueDAO();
+	FuncionarioDAO dao = new FuncionarioDAO();
+	Funcionario funcionario = new Funcionario("78451358", "Zé", "999999999", "senha");
 	private int tamanhoAnterior;
-	
-	Estoque estoque = new Estoque("jjj", "Refrigerantes", "Alimentos", 18);
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -33,14 +33,13 @@ public class EstoqueDAOTest {
 
 	@After
 	public void tearDown() throws Exception {
-		dao.deletar(estoque);
+		dao.deletar(funcionario);
 	}
 
 	@Test
 	public void testSalvar() {
-		dao.salvar(estoque);
+		dao.salvar(funcionario);
 		assertNotEquals(tamanhoAnterior, dao.listar().size());
 	}
-
 
 }
