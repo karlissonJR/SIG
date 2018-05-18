@@ -25,6 +25,10 @@ public class Funcionario {
 	public String getTelefone() {
 		return this.telefone;
 	}
+	
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
 	public String getSenha() {
 		return this.senha;

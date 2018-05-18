@@ -9,7 +9,7 @@ import model.Estoque;
 
 public class EstoqueDAO {
 
-	public void salvar(Estoque estoque) {
+	public boolean salvar(Estoque estoque) {
 		
 		String sql = "INSERT INTO estoque (codigo,nome,tipo,capacidade) VALUES (?,?,?,?)";	
 		PreparedStatement stmt;
@@ -23,9 +23,11 @@ public class EstoqueDAO {
 			stmt.setInt(4, estoque.getCapacidade());
 			
 			stmt.executeUpdate();
+			return true;
 		}
 		catch (SQLException e) {
 			System.err.println(e.getMessage());
+			return false;
 		}
 		
 	}
@@ -97,7 +99,7 @@ public class EstoqueDAO {
 		
 	}
 	
-	public void atualizar(Estoque estoque) {
+	public boolean atualizar(Estoque estoque) {
 		
 		String sql = "UPDATE estoque SET nome = ?, tipo = ?, capacidade = ? WHERE codigo = ?";
 		PreparedStatement stmt;
@@ -111,13 +113,16 @@ public class EstoqueDAO {
 			stmt.setString(4, estoque.getCodigo());
 			
 			stmt.executeUpdate();
+			
+			return true;
 		}
 		catch(SQLException e) {
 			System.err.println(e.getMessage());
+			return false;
 		}
 	}
 	
-	public void deletar(Estoque estoque) {
+	public boolean deletar(Estoque estoque) {
 		
 		String sql = "DELETE FROM estoque WHERE codigo = ?";
 		PreparedStatement stmt;
@@ -128,9 +133,12 @@ public class EstoqueDAO {
 			stmt.setString(1, estoque.getCodigo());
 			
 			stmt.executeUpdate();
+			
+			return true;
 		}
 		catch(SQLException e) {
 			System.err.println(e.getMessage());
+			return false;
 		}
 	}
 }

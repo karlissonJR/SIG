@@ -29,4 +29,8 @@ public class Estoque {
 	public int getCapacidade() {
 		return this.capacidade;
 	}
+	
+	public void setCapacidade(int capacidade) {
+		this.capacidade = capacidade;
+	}
 }

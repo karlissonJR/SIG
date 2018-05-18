@@ -9,7 +9,7 @@ import model.Produto;
 
 public class ProdutoDAO {
 
-	public void salvar(Produto produto) {
+	public boolean salvar(Produto produto) {
 		
 		String sql = "INSERT INTO produto (codigo,nome,tipo,quantidade,preco,validade,codigo_estoque) "
 				+ "VALUES (?,?,?,?,?,?,?)";	
@@ -27,12 +27,11 @@ public class ProdutoDAO {
 			stmt.setString(7, produto.getCodigoEstoque());
 			
 			stmt.executeUpdate();
+			return true;
 		}
 		catch (SQLException e) {
 			System.err.println(e.getMessage());
-		}
-		finally {
-			//Conexao.encerrar(conexao);
+			return false;
 		}
 		
 	}
@@ -66,9 +65,6 @@ public class ProdutoDAO {
 		}
 		catch(SQLException e) {
 			System.err.println(e.getMessage());
-		}
-		finally {
-			//Conexao.encerrar(conexao);
 		}
 		
 		return produtos;
@@ -108,15 +104,12 @@ public class ProdutoDAO {
 		catch(SQLException e) {
 			System.err.println(e.getMessage());
 		}
-		finally {
-			//Conexao.encerrar(conexao);
-		}
 		
 		return produtos;
 		
 	}
 	
-	public void atualizar(Produto produto) {
+	public boolean atualizar(Produto produto) {
 		
 		String sql = "UPDATE produto SET nome = ?, tipo = ?, quantidade = ?, preco = ? WHERE codigo = ?";
 		PreparedStatement stmt;
@@ -131,16 +124,15 @@ public class ProdutoDAO {
 			stmt.setString(5, produto.getCodigo());
 			
 			stmt.executeUpdate();
+			return true;
 		}
 		catch(SQLException e) {
 			System.err.println(e.getMessage());
-		}
-		finally {
-			//Conexao.encerrar(conexao);
+			return false;
 		}
 	}
 	
-	public void deletar(Produto produto) {
+	public boolean deletar(Produto produto) {
 		
 		String sql = "DELETE FROM produto WHERE codigo = ?";
 		PreparedStatement stmt;
@@ -151,12 +143,12 @@ public class ProdutoDAO {
 			stmt.setString(1, produto.getCodigo());
 			
 			stmt.executeUpdate();
+			
+			return true;
 		}
 		catch(SQLException e) {
 			System.err.println(e.getMessage());
-		}
-		finally {
-			//Conexao.encerrar(conexao);
+			return false;
 		}
 	}
 	

@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import model.Funcionario;
 
 public class FuncionarioDAO {
-	
-	//private Connection conexao;
 
-	public void salvar(Funcionario funcionario) {
+	public boolean salvar(Funcionario funcionario) {
 		
 		String sql = "INSERT INTO funcionario (cpf,nome,telefone,senha) VALUES (?,?,?,?)";	
 		PreparedStatement stmt;
@@ -25,12 +23,12 @@ public class FuncionarioDAO {
 			stmt.setString(4, funcionario.getSenha());
 			
 			stmt.executeUpdate();
+			
+			return true;
 		}
 		catch (SQLException e) {
 			System.err.println(e.getMessage());
-		}
-		finally {
-			//Conexao.encerrar(conexao);
+			return false;
 		}
 		
 	}
@@ -62,15 +60,12 @@ public class FuncionarioDAO {
 		catch(SQLException e) {
 			System.err.println(e.getMessage());
 		}
-		finally {
-			//Conexao.encerrar(conexao);
-		}
 		
 		return funcionarios;
 		
 	}
 	
-	public void atualizar(Funcionario funcionario) {
+	public boolean atualizar(Funcionario funcionario) {
 		
 		String sql = "UPDATE funcionario SET nome = ?, telefone = ?, senha = ? WHERE cpf = ?";
 		PreparedStatement stmt;
@@ -84,16 +79,16 @@ public class FuncionarioDAO {
 			stmt.setString(4, funcionario.getCpf());
 			
 			stmt.executeUpdate();
+			
+			return true;
 		}
 		catch(SQLException e) {
 			System.err.println(e.getMessage());
-		}
-		finally {
-			//Conexao.encerrar(conexao);
+			return false;
 		}
 	}
 	
-	public void deletar(Funcionario funcionario) {
+	public boolean deletar(Funcionario funcionario) {
 		
 		String sql = "DELETE FROM funcionario WHERE cpf = ?";
 		PreparedStatement stmt;
@@ -104,12 +99,12 @@ public class FuncionarioDAO {
 			stmt.setString(1, funcionario.getCpf());
 			
 			stmt.executeUpdate();
+			
+			return true;
 		}
 		catch (SQLException e) {
 			System.err.println(e.getMessage());
-		}
-		finally {
-			//Conexao.encerrar(conexao);
+			return false;
 		}
 		
 	}
